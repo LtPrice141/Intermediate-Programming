@@ -1,0 +1,10 @@
+print('---Comparison Operators---')
+x = int(input('Enter number for x: '))
+y = int(input('Enter number for y: '))
+
+print('\n(x=' + str(x) + ', y=' + str(y) + '): x > y = ' + str(x > y))
+print('(x=' + str(x) + ', y=' + str(y) + '): x >= y = ' + str(x >= y))
+print('(x=' + str(x) + ', y=' + str(y) + '): x < y = ' + str(x < y))
+print('(x=' + str(x) + ', y=' + str(y) + '): x <= y = ' + str(x <= y))
+print('(x=' + str(x) + ', y=' + str(y) + '): x == y = ' + str(x == y))
+print('(x=' + str(x) + ', y=' + str(y) + '): x != y = ' + str(x != y))
