@@ -1,0 +1,40 @@
+print('\n---Grade Calculator Program---')
+
+grade = int(input('What is your score?: '))
+
+a_plus = 95
+a_minus = 90
+b_plus = 85
+b_minus = 80
+c_plus = 75
+c_minus = 70
+d = 60
+
+
+
+if grade < 0 or grade > 100:
+    print('Invalid score!')
+
+elif grade >= a_plus:
+    print('Grade: A+ — Very good!')
+
+elif grade >= a_minus:
+    print('Grade: A- — Excellent work!')
+
+elif grade >= b_plus:
+    print('Grade: B+ — Great job!')
+
+elif grade >= b_minus:
+    print('Grade: B- — Good work!')
+
+elif grade >= c_plus:
+    print('Grade: C+ — Nice effort!')
+
+elif grade >= c_minus:
+    print('Grade: C- — You passed!')
+
+elif grade >= d:
+    print('Grade: D — Needs improvement.')
+
+else:
+    print('Grade: F Better luck next time.')
