@@ -1,0 +1,80 @@
+print('\n=== MOVIE TICKET SYSTEM ===')
+ 
+day = input('Day (weekday/weekend): ').lower().strip()
+customer_type = input('Type (regular/student/senior): ').lower().strip()
+time = int(input('Showtime hour (9-22): '))
+ticket_qty = int(input('Number of tickets: '))
+ 
+# Discount rate variables
+STUDENT_RATE = 0.20
+SENIOR_RATE = 0.30
+MATINEE_RATE = 0.10
+GROUP_RATE = 0.05
+ 
+user_disc = 0
+matinee_disc = 0
+group_disc = 0
+ 
+# Validate day
+if day == "weekday":
+    base_p = 200
+elif day == "weekend":
+    base_p = 300
+else:
+    print("Invalid day. Please enter 'weekday' or 'weekend'.")
+    exit()
+ 
+# Validation
+if customer_type not in ["regular", "student", "senior"]:
+    print("Invalid customer type.")
+    exit()
+
+if time < 9 or time > 22:
+    print('Invalid time selected. (9-22 only)')
+    exit()
+ 
+if ticket_qty <= 0:
+    print('A minimum of 1 ticket is required.')
+    exit()
+ 
+ticket_qty_calc = base_p * ticket_qty
+running_total = ticket_qty_calc
+
+ 
+# User discount
+if customer_type == 'student':
+    user_disc = running_total * STUDENT_RATE
+    running_total -= user_disc
+elif customer_type == 'senior':
+    user_disc = running_total * SENIOR_RATE
+    running_total -= user_disc
+ 
+# Matinee discount
+if time < 12:
+    matinee_disc = running_total * MATINEE_RATE
+    running_total -= matinee_disc
+ 
+# Group discount
+if ticket_qty >= 5:
+    group_disc = running_total * GROUP_RATE
+    running_total -= group_disc
+ 
+print('\n--- Receipt ---')
+print(f'Base Price: {base_p} x {ticket_qty} = {ticket_qty_calc:,.2f}')
+ 
+if user_disc > 0:
+    if customer_type == 'student':
+        print(f'Student Discount (20%): -{user_disc:,.2f}')
+    elif customer_type == 'senior':
+        print(f'Senior Discount (30%): -{user_disc:,.2f}')
+ 
+if matinee_disc > 0:
+    print(f'Matinee Discount (10%): -{matinee_disc:,.2f}')
+ 
+if group_disc > 0:
+    print(f'Group Discount (5%): -{group_disc:,.2f}')
+ 
+final_total = running_total
+ 
+print(f'TOTAL: {final_total:,.2f}')
+print('Thank you for your purchase!')
