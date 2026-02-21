@@ -1,15 +1,19 @@
-print('\n=== MOVIE TICKET SYSTEM ===')
+print('=== MOVIE TICKET SYSTEM ===')
  
 day = input('Day (weekday/weekend): ').lower().strip()
 customer_type = input('Type (regular/student/senior): ').lower().strip()
 time = int(input('Showtime hour (9-22): '))
 ticket_qty = int(input('Number of tickets: '))
  
+cinema_open = 9
+cinema_close = 22
+matinee_end = 12
+ 
 # Discount rate variables
-STUDENT_RATE = 0.20
-SENIOR_RATE = 0.30
-MATINEE_RATE = 0.10
-GROUP_RATE = 0.05
+student_rate = 0.20
+senior_rate = 0.30
+matinee_rate = 0.10
+group_rate = 0.05
  
 user_disc = 0
 matinee_disc = 0
@@ -22,20 +26,20 @@ elif day == "weekend":
     base_p = 300
 else:
     print("Invalid day. Please enter 'weekday' or 'weekend'.")
-    exit()
+    #exit()
  
 # Validation
 if customer_type not in ["regular", "student", "senior"]:
     print("Invalid customer type.")
-    exit()
+    #exit()
 
-if time < 9 or time > 22:
+if time < cinema_open or time > cinema_close:
     print('Invalid time selected. (9-22 only)')
-    exit()
+    #exit()
  
 if ticket_qty <= 0:
     print('A minimum of 1 ticket is required.')
-    exit()
+    #exit()
  
 ticket_qty_calc = base_p * ticket_qty
 running_total = ticket_qty_calc
@@ -43,20 +47,20 @@ running_total = ticket_qty_calc
  
 # User discount
 if customer_type == 'student':
-    user_disc = running_total * STUDENT_RATE
+    user_disc = running_total * student_rate
     running_total -= user_disc
 elif customer_type == 'senior':
-    user_disc = running_total * SENIOR_RATE
+    user_disc = running_total * senior_rate
     running_total -= user_disc
  
 # Matinee discount
-if time < 12:
-    matinee_disc = running_total * MATINEE_RATE
+if time < matinee_end:
+    matinee_disc = running_total * matinee_rate
     running_total -= matinee_disc
  
 # Group discount
 if ticket_qty >= 5:
-    group_disc = running_total * GROUP_RATE
+    group_disc = running_total * group_rate
     running_total -= group_disc
  
 print('\n--- Receipt ---')
